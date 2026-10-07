@@ -26,6 +26,19 @@ jobs:
         run: cargo +stable clippy --locked --all-targets --all-features -- -D warnings
       - name: Build native lab
         run: cargo +stable build --locked --release --features test-fixtures
+      - name: Check Linux helper syntax without TPM access
+        if: runner.os == 'Linux'
+        run: |
+          bash -n hardware/linux/sign-identity.sh
+          bash -n hardware/linux/collect-quote.sh
+      - name: Check Windows helper syntax without TPM access
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $parseErrors = $null
+          $tokens = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Join-Path $PWD 'hardware/windows/identity.ps1'), [ref]$tokens, [ref]$parseErrors) | Out-Null
+          if ($parseErrors.Count) { throw ($parseErrors | Out-String) }
       - name: Run simulation and worker-protocol proofs
         shell: bash
         run: |

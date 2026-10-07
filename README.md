@@ -10,7 +10,7 @@ This public repository is for reproducible external testing of a small, simulate
 - **Proposed** — roadmap only.
 - **Unknown** — no evidence (including real exfiltration coverage, poisoning coverage, and sandbox-escape resistance).
 
-Current finite checks: **22 native adversarial tests, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise.
+Current finite checks: **22 native controller adversarial tests, 16 hardware-policy tests using mock verifiers, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise or physical TPM correctness.
 
 Run it with the official stable Rust toolchain installed:
 
@@ -49,6 +49,7 @@ The worker-only stdin protocol accepts tab-separated proposals and read-only sta
 
 ## Architecture
 
+- **Optional TPM identity foundation:** a fail-closed hardware-evidence wrapper, explicit Windows TPM key helper, and Linux signing/quote-collection helpers. The default verifier rejects all proofs. Physical TPM behavior and complete independent attestation are unverified; no hardware is provisioned by the demo or CI. See [implementation and limits](docs/hardware-identity.md).
 - **Rust core:** fixed action/resource scopes, monotonic lease, generation-bound worker ports, temporary one-use permissions, synthetic tripwire containment, timed intervention, progressive self-containment, postcondition verification, preserved access holds, and clean-path recovery exercises.
 - **Trusted fixture:** supervisor and adapter access are owned by test code. Test-only clock advance and clean-state marking are behind the `test-fixtures` feature. The shipped lab explicitly enables that feature and is not a production service.
 - **JavaScript reference:** an unchanged snapshot of [SENTRY commit a0717b3](https://github.com/spikediegel-prog/SENTRY/commit/a0717b3752d3d5d27552cbbc4672cc82d5707869) in `reference/javascript/`. It retains Guardian, learning experiments, memory quarantine, provenance, replay and the offline dashboard. Its full saved-artifact workflow still requires Windows DPAPI.

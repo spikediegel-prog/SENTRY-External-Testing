@@ -16,3 +16,7 @@
 | Reliable attack detection, production workload resistance, real exfiltration/poisoning coverage, sandbox escape resistance | Unknown | No production evidence |
 
 The JavaScript snapshot contains additional experimental learning and Guardian capabilities. It retains its own claims and known misses/false positives. Those are not automatically inherited by the Rust port.
+
+## Optional hardware identity
+
+The [TPM identity foundation](hardware-identity.md) has 16 **Verified** mock-verifier tests for challenge binding, replay, expiry, hardware/profile requirements, software-downgrade refusal and capability revocation. Helper syntax checks do not establish physical TPM correctness. Windows/Linux key/signature/quote metadata is **Recorded** when collected; real hardware behavior is **Unknown** until exercised. Built-in cryptographic platform verification and protected evidence-key sealing remain **Proposed**. The default verifier rejects all proofs.

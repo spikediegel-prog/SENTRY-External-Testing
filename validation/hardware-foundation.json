@@ -1,0 +1,15 @@
+{
+  "classification": "Recorded",
+  "scope": "Local Windows mock-verifier tests and provider helper syntax only",
+  "nativeControllerTestsPassed": 22,
+  "hardwarePolicyTestsPassed": 16,
+  "compileFailBoundaryChecksPassed": 2,
+  "clippy": "Passed with warnings denied",
+  "windowsHelperSyntax": "Passed; helper not executed",
+  "linuxHelperSyntax": "Passed using Git Bash; helpers not executed",
+  "physicalHardwareTested": false,
+  "tpmProvisioned": false,
+  "defaultVerifier": "RejectAllVerifier",
+  "realCryptographicPlatformVerifier": "Proposed",
+  "evidenceKeySealing": "Proposed"
+}

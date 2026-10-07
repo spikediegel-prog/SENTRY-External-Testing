@@ -1,5 +1,7 @@
 #![forbid(unsafe_code)]
 
+pub mod hardware_identity;
+
 use std::collections::{BTreeMap, BTreeSet};
 use std::sync::{Arc, Mutex};
 use std::time::Instant;
@@ -476,6 +478,12 @@ pub fn controller(
     })
 }
 impl Supervisor {
+    pub(crate) fn hardware_failure(&self, reason: &'static str) {
+        if let Ok(mut core) = self.core.lock() {
+            core.revoke(reason);
+            let _ = core.record("hardware_verification_reconciliation", None, reason);
+        }
+    }
     pub fn recover(
         &self,
         instance: &str,
