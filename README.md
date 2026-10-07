@@ -4,6 +4,24 @@
 
 This public repository is for reproducible external testing of a small, simulated enforcement core. It complements firewalls and endpoint security. It is not a production agent, intrusion detector, operating-system sandbox, or replacement for existing protections.
 
+- **Verified** — a named test passed on an identified platform for this simulation.
+- **Recorded** — metadata or fixture observations.
+- **Inferred** — a design conclusion without a dedicated proof.
+- **Proposed** — roadmap only.
+- **Unknown** — no evidence (including real exfiltration coverage, poisoning coverage, and sandbox-escape resistance).
+
+Current finite checks: **22 native adversarial tests, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise.
+
+Run it with the official stable Rust toolchain installed:
+
+```text
+cargo test --locked --all-features
+cargo clippy --locked --all-targets --all-features -- -D warnings
+cargo run --locked --features test-fixtures -- --demo
+```
+
+If you run it on another machine, file a [test-result issue](https://github.com/spikediegel-prog/SENTRY-External-Testing/issues/new?template=test-result.yml) with platform, toolchain, commit, commands, and observed behavior.
+
 The Rust library has no third-party dependencies. It builds as native code; the demonstration binary requires no Node runtime. Node 22+ is needed only for JavaScript comparison tools. Unsafe Rust is forbidden in this crate. These choices do not establish security against arbitrary host compromise.
 
 ## Run locally
@@ -40,9 +58,7 @@ Worker and supervisor ports are separate typed interfaces within one trusted pro
 
 ## Evidence and claims
 
-**Verified:** a named test passed on an identified platform for the stated simulation. **Recorded:** metadata, fixture receipts, or observations. **Inferred:** a reasoned design conclusion without a dedicated proof. **Proposed:** future work. **Unknown:** insufficient evidence.
-
-There are 22 native adversarial tests, two compile-fail boundary checks, 17 shared worker-protocol cases, and ten executable negative protocol assertions. These are distinct finite checks, not a claim that all 104 JavaScript assertions were ported. See [claims](docs/claims.md), [local validation](validation/local-windows.json), and the [CI runs](https://github.com/spikediegel-prog/SENTRY-External-Testing/actions).
+The finite checks listed above are not a claim that all 104 JavaScript assertions were ported. See [claims](docs/claims.md), [local validation](validation/local-windows.json), and the [CI runs](https://github.com/spikediegel-prog/SENTRY-External-Testing/actions).
 
 ## Contribute test results
 
