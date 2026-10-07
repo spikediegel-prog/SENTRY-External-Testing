@@ -8,6 +8,16 @@ publish = false
 
 [features]
 test-fixtures = []
+hardware-verifier = ["dep:ring", "dep:serde", "dep:serde_json"]
+
+[dependencies]
+ring = { version = "0.17.14", optional = true }
+serde = { version = "1.0", features = ["derive"], optional = true }
+serde_json = { version = "1.0", optional = true }
+
+[dev-dependencies]
+rsa = { version = "0.9.10", features = ["sha2"] }
+rand_chacha = "0.3.1"
 
 [lib]
 path = "rust/src/lib.rs"
@@ -16,6 +26,11 @@ path = "rust/src/lib.rs"
 name = "sentry-lab"
 path = "rust/src/main.rs"
 required-features = ["test-fixtures"]
+
+[[bin]]
+name = "sentry-verifier"
+path = "rust/src/verifier_main.rs"
+required-features = ["hardware-verifier"]
 
 [profile.release]
 overflow-checks = true

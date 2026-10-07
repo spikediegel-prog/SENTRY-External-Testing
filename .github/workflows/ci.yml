@@ -26,6 +26,14 @@ jobs:
         run: cargo +stable clippy --locked --all-targets --all-features -- -D warnings
       - name: Build native lab
         run: cargo +stable build --locked --release --features test-fixtures
+      - name: Build verifier without adversarial fixture switches
+        run: cargo +stable build --locked --release --features hardware-verifier --bin sentry-verifier
+      - name: Operator verifier refuses fixture switches
+        shell: bash
+        run: |
+          verifier=target/release/sentry-verifier
+          if [ "$RUNNER_OS" = "Windows" ]; then verifier="$verifier.exe"; fi
+          if "$verifier" --fixture malformed; then exit 1; else test "$?" -eq 2; fi
       - name: Check Linux helper syntax without TPM access
         if: runner.os == 'Linux'
         run: |
@@ -51,5 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sentry-lab-${{ matrix.os }}
-          path: target/release/sentry-lab*
+          path: |
+            target/release/sentry-lab*
+            target/release/sentry-verifier*
           if-no-files-found: error

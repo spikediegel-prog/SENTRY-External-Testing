@@ -226,7 +226,7 @@ fn run() -> Result<(), &'static str> {
         "Recorded: {} in-memory evidence rows.",
         evidence.rows().len()
     );
-    println!("Proposed: real attestation, persistent protected storage, process isolation and live adapters.");
+    println!("Proposed: physical TPM enrollment, persistent protected storage, OS sandbox/watchdog and live adapters.");
     Ok(())
 }
 fn main() {

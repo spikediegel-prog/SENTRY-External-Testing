@@ -10,7 +10,7 @@ This public repository is for reproducible external testing of a small, simulate
 - **Proposed** — roadmap only.
 - **Unknown** — no evidence (including real exfiltration coverage, poisoning coverage, and sandbox-escape resistance).
 
-Current finite checks: **22 native controller adversarial tests, 24 hardware-policy tests using mock verifiers, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise or physical TPM correctness.
+Current finite checks: **22 native controller adversarial tests, 24 hardware-policy tests using mock verifiers, 30 synthetic cryptography/process tests, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise or physical TPM correctness.
 
 Run it with the official stable Rust toolchain installed:
 
@@ -22,7 +22,7 @@ cargo run --locked --features test-fixtures -- --demo
 
 If you run it on another machine, file a [test-result issue](https://github.com/spikediegel-prog/SENTRY-External-Testing/issues/new?template=test-result.yml) with platform, toolchain, commit, commands, and observed behavior.
 
-The Rust library has no third-party dependencies. It builds as native code; the demonstration binary requires no Node runtime. Node 22+ is needed only for JavaScript comparison tools. Unsafe Rust is forbidden in this crate. These choices do not establish security against arbitrary host compromise.
+The default Rust library has no third-party runtime dependencies. The opt-in `hardware-verifier` feature uses pinned cryptography and serialization dependencies; its build also requires a supported C compiler. Synthetic signing dependencies are development-only. It builds as native code; the demonstration binary requires no Node runtime. Node 22+ is needed only for JavaScript comparison tools. Unsafe Rust is forbidden in this crate’s own source; dependencies have their own implementation requirements. These choices do not establish security against arbitrary host compromise.
 
 ## Run locally
 
@@ -66,3 +66,13 @@ The finite checks listed above are not a claim that all 104 JavaScript assertion
 Report your platform, toolchain, exact commit, command, expected behavior, observed behavior, and minimized synthetic reproduction. Identify false positives and missed cases as carefully as successful blocks. Use [test-result template](.github/ISSUE_TEMPLATE/test-result.yml). For sensitive vulnerabilities, follow [SECURITY.md](SECURITY.md).
 
 The next milestones are an isolated host protocol, protected storage providers, real independent postcondition sensors, typed integration tooling, and a live operator UI. Their status is **Proposed**, not implemented. See [roadmap](docs/roadmap.md).
+
+## Optional cryptographic attestation and process verifier
+
+The `hardware-verifier` feature adds OS randomness, pinned signed enrollment records, RSA/SHA-256 identity and TPM quote verification, a bounded measured-boot profile, and a short-lived verifier process with deadlines and child termination. It does not enable hardware approval in the ordinary demo or worker protocol. `RejectAllVerifier` remains the default. Read the [implementation and limits](docs/cryptographic-verifier.md) and [enrollment contract](docs/hardware-enrollment.md) before integrating. No trusted hardware enrollment is supplied; physical TPM interoperability, hardware provenance and host-compromise resistance remain Unknown.
+
+```text
+cargo build --locked --release --features hardware-verifier --bin sentry-verifier
+```
+
+Build this executable without `test-fixtures` for operator use. The existing lab demonstration deliberately uses simulated authority; it does not claim a successful physical attestation.

@@ -4,6 +4,11 @@ use crate::{Supervisor, Worker};
 use std::time::Instant;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "hardware-verifier",
+    derive(serde::Serialize, serde::Deserialize)
+)]
+#[cfg_attr(feature = "hardware-verifier", serde(deny_unknown_fields))]
 pub struct Challenge {
     pub session: [u8; 32],
     pub sequence: u64,
@@ -25,6 +30,11 @@ impl Challenge {
     }
 }
 #[derive(Clone, Debug)]
+#[cfg_attr(
+    feature = "hardware-verifier",
+    derive(serde::Serialize, serde::Deserialize)
+)]
+#[cfg_attr(feature = "hardware-verifier", serde(deny_unknown_fields))]
 pub struct HardwareProof {
     pub session: [u8; 32],
     pub sequence: u64,
@@ -34,6 +44,11 @@ pub struct HardwareProof {
 }
 /// Only an independently trusted verifier may return these results. Never parse these booleans from worker input.
 #[derive(Clone, Debug)]
+#[cfg_attr(
+    feature = "hardware-verifier",
+    derive(serde::Serialize, serde::Deserialize)
+)]
+#[cfg_attr(feature = "hardware-verifier", serde(deny_unknown_fields))]
 pub struct VerifiedPlatform {
     pub enrolled_key_id: String,
     pub boot_profile: String,

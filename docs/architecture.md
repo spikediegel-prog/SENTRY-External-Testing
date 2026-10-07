@@ -1,5 +1,11 @@
 # Architecture and threat model
 
+## Optional cryptographic evidence path
+
+The `hardware-verifier` feature adds a separate path: trusted bootstrap pins and signed enrollment record → OS-generated session/challenge → bounded short-lived verifier child → cryptographic and approved-profile result → existing supervisor lease/scope checks. No worker command selects the executable, root, manifest or policy. The child has no supervisor, adapter, grant or hold-release handle. `RejectAllVerifier` remains the default; the ordinary demo uses simulated authority.
+
+The optional verifier implements RSA/SHA-256 signature/quote checks, strict TPM structure parsing, a pinned bounded event log and PCR replay, plus child failure/deadline rejection. Hardware provenance is delegated to a separately trusted enrollment authority's signed activation/certification record; the physical ceremony and EK-chain validation are not implemented here. Tests use synthetic records/keys/quotes. OS sandbox/process-tree enforcement, independent privileged watchdog, actual hardware compatibility and host-compromise resistance are not established. See [cryptographic verifier and limits](cryptographic-verifier.md).
+
 ## What the Rust core enforces
 
 The boot `Policy` controls bounded lease, intervention window, request ledger and permit capacity. Powers are fixed by typed action/resource pairs: read handbook, write scratch note, send to simulation inbox. Read is baseline; write/send require a supervisor-issued permit. The policy is copied into private core state and cannot be changed through a worker port.

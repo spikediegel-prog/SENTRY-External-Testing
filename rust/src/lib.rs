@@ -1,5 +1,7 @@
 #![forbid(unsafe_code)]
 
+#[cfg(feature = "hardware-verifier")]
+pub mod attestation;
 pub mod hardware_identity;
 
 use std::collections::{BTreeMap, BTreeSet};
