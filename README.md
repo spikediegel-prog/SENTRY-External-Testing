@@ -10,7 +10,7 @@ This public repository is for reproducible external testing of a small, simulate
 - **Proposed** — roadmap only.
 - **Unknown** — no evidence (including real exfiltration coverage, poisoning coverage, and sandbox-escape resistance).
 
-Current finite checks: **22 native controller adversarial tests, 16 hardware-policy tests using mock verifiers, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise or physical TPM correctness.
+Current finite checks: **22 native controller adversarial tests, 24 hardware-policy tests using mock verifiers, 2 compile-fail boundary checks, 17 shared worker-protocol cases against a pinned JavaScript reference, and 10 negative protocol assertions.** These do not establish security against host compromise or physical TPM correctness.
 
 Run it with the official stable Rust toolchain installed:
 

@@ -1,0 +1,21 @@
+{
+  "classification": "Recorded",
+  "scope": "Local Windows V2 mock-verifier hardening and helper syntax checks",
+  "nativeControllerTestsPassed": 22,
+  "hardwarePolicyTestsPassed": 24,
+  "compileFailBoundaryChecksPassed": 2,
+  "sharedWorkerProtocolCasesPassed": 17,
+  "negativeProtocolAssertionsPassed": 10,
+  "clippy": "Passed with warnings denied",
+  "helperSyntax": "Windows Parser and each Linux helper via Git Bash passed; helpers not executed",
+  "defaultVerifier": "RejectAllVerifier; randomness and verification reject by default",
+  "challengeVersion": 2,
+  "issuance": "Trusted verifier callback; fresh session and nonce, monotonic sequence, one pending exchange, minimum 100 ms spacing",
+  "continuedOperationFixture": "1024 exchanges; no 128-exchange lifetime ceiling",
+  "restartProof": "Fresh deterministic session and message-binding fixture only; not cryptographic or durable freshness proof",
+  "realRandomnessAdapter": "Proposed",
+  "realCryptographicPlatformVerifier": "Proposed",
+  "isolatedVerifierHardTimeout": "Proposed",
+  "physicalHardwareTested": false,
+  "tpmProvisioned": false
+}

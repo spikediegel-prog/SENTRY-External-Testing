@@ -36,7 +36,7 @@ if ($Operation -eq 'Provision') {
     [Array]::Copy($buffer,$message,$total)
   } finally { $stream.Dispose() }
   $text=[Text.Encoding]::UTF8.GetString($message)
-  if ($text -notmatch '\ASENTRY-HARDWARE-IDENTITY-V1\nnonce=[0-9a-f]{64}\ninstance=[A-Za-z0-9._-]{1,128}\ngeneration=[1-9][0-9]{0,19}\npolicy=[A-Za-z0-9._-]{1,128}\n\z') { throw 'Invalid domain-bound challenge' }
+  if ($text -notmatch '\ASENTRY-HARDWARE-IDENTITY-V2\nsession=[0-9a-f]{64}\nsequence=[1-9][0-9]{0,19}\nnonce=[0-9a-f]{64}\ninstance=[A-Za-z0-9._-]{1,128}\ngeneration=[1-9][0-9]{0,19}\npolicy=[A-Za-z0-9._-]{1,128}\n\z') { throw 'Invalid domain-bound challenge' }
   $key=[Security.Cryptography.CngKey]::Open($KeyName,$provider)
 }
 try {

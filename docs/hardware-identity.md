@@ -6,11 +6,11 @@ This adds an opt-in Rust hardware-evidence policy wrapper, Windows TPM key enrol
 
 `HardwareSupervisor` takes ownership of the existing supervisor handle and revokes any previously issued software-fixture lease. Workers cannot configure its hardware policy, create challenges, verify themselves, renew authority, or approve recovery.
 
-Challenges bind a fresh verifier-supplied 32-byte nonce to instance, generation and fixed policy identifier. Nonces are reserved once, including abandoned exchanges. One exchange is pending at a time. The finite 128-challenge budget fails closed rather than resetting automatically. Nonces must come from the independent verifier's CSPRNG; test fixtures use deterministic bytes only.
+V2 challenges bind a trusted-verifier-generated 32-byte session identifier, monotonic sequence, and 32-byte nonce to instance, generation and fixed policy identifier. The public challenge API no longer accepts caller-selected random bytes. The verifier's randomness method defaults to rejection; no built-in CSPRNG adapter is supplied. Tests use deterministic fixtures only. One exchange is pending at a time; abandoned exchanges expire and issuance is rate-limited to one per 100 ms. There is no lifetime 128-challenge ceiling or growing nonce set. Sequence exhaustion revokes authority. See the [enrollment and restart contract](hardware-enrollment.md).
 
 Every proof attempt consumes its exchange. Mismatch, expiry, missing/oversized evidence, verifier failure, wrong enrolled key/profile, or unverified provenance/state revoke authority. Deadlines are checked before and after verification. Accepted renewal/recovery only activates existing pre-authorized powers; renewal cannot revive an expired lease and recovery never releases holds automatically.
 
-**The default `RejectAllVerifier` never approves authority.** An independently trusted integration must supply actual signature, enrolled-key, quote, freshness, boot-profile and event-log verification. No genuine cryptographic platform verifier is included or wired into worker stdin/the ordinary demo. `VerifiedPlatform` is a trusted verifier API, not booleans to accept from a model or provider. A malicious verifier/compromised trusted host can lie. Synchronous verifier stalls are not bounded by this wrapper; an isolated verifier service remains proposed.
+**The default `RejectAllVerifier` never approves authority and refuses randomness, so hardware-wrapper initialization remains closed without a separately supplied trusted implementation.** An independently trusted integration must supply actual signature, enrolled-key, quote, freshness, boot-profile and event-log verification. No genuine cryptographic platform verifier is included or wired into worker stdin/the ordinary demo. `VerifiedPlatform` is a trusted verifier API, not booleans to accept from a model or provider. A malicious verifier/compromised trusted host can lie. Synchronous verifier stalls are not bounded by this wrapper; an isolated verifier service remains proposed.
 
 ## Windows helper
 
@@ -44,14 +44,16 @@ Quotes qualify themselves with SHA-256 of the complete challenge and collect PCR
 `Challenge::message()` generates LF-terminated UTF-8:
 
 ```text
-SENTRY-HARDWARE-IDENTITY-V1
+SENTRY-HARDWARE-IDENTITY-V2
+session=<64 lowercase hexadecimal characters>
+sequence=<positive integer>
 nonce=<64 lowercase hexadecimal characters>
 instance=<bounded identifier>
 generation=<positive integer>
 policy=<fixed policy identifier>
 ```
 
-Domain binding protects protocol use only when actual signatures/quotes are independently verified. Deterministic nonce/mock-verifier tests are neither cryptographic nor hardware proofs.
+V1 helper challenges are now refused. Envelope session/sequence checks reject stale exchanges before verification, but an attacker can relabel unsigned envelope fields: actual signatures and quote qualification must bind all V2 bytes. Fresh session randomness is required across restart; repeating the complete challenge or skipping cryptographic binding defeats that protection. There is no durable epoch ledger. Domain binding protects protocol use only when actual signatures/quotes are independently verified. Deterministic nonce/mock-verifier tests are neither cryptographic nor hardware proofs.
 
 ## Updates and recovery
 

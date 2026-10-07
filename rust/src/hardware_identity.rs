@@ -1,11 +1,12 @@
 //! Optional hardware-evidence policy plumbing. No built-in verifier accepts hardware claims.
 //! Provider labels/signatures alone are not platform attestation.
 use crate::{Supervisor, Worker};
-use std::collections::BTreeSet;
 use std::time::Instant;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Challenge {
+    pub session: [u8; 32],
+    pub sequence: u64,
     pub nonce: [u8; 32],
     pub instance: String,
     pub generation: u64,
@@ -14,8 +15,10 @@ pub struct Challenge {
 impl Challenge {
     pub fn message(&self) -> Vec<u8> {
         let nonce: String = self.nonce.iter().map(|b| format!("{b:02x}")).collect();
+        let session: String = self.session.iter().map(|b| format!("{b:02x}")).collect();
         format!(
-            "SENTRY-HARDWARE-IDENTITY-V1\nnonce={nonce}\ninstance={}\ngeneration={}\npolicy={}\n",
+            "SENTRY-HARDWARE-IDENTITY-V2\nsession={session}\nsequence={}\nnonce={nonce}\ninstance={}\ngeneration={}\npolicy={}\n",
+            self.sequence,
             self.instance, self.generation, self.policy_id
         )
         .into_bytes()
@@ -23,6 +26,8 @@ impl Challenge {
 }
 #[derive(Clone, Debug)]
 pub struct HardwareProof {
+    pub session: [u8; 32],
+    pub sequence: u64,
     pub nonce: [u8; 32],
     pub identity_signature: Vec<u8>,
     pub quote: Vec<u8>,
@@ -37,6 +42,11 @@ pub struct VerifiedPlatform {
     pub binding_verified: bool,
 }
 pub trait PlatformVerifier: Send {
+    /// Trusted CSPRNG only. Never obtain bytes from a worker or evidence provider.
+    /// A fresh session draw must remain unpredictable across controller restarts.
+    fn random_bytes(&mut self) -> Result<[u8; 32], &'static str> {
+        Err("trusted_randomness_not_configured")
+    }
     /// Verify enrolled key signature, freshness/domain binding, quote signature, PCR/event-log policy,
     /// and hardware enrollment provenance. Failure/absence must return Err; no software downgrade.
     fn verify(
@@ -65,7 +75,9 @@ pub struct HardwareSupervisor {
     profile: String,
     policy_id: String,
     pending: Option<(Challenge, u64)>,
-    used: BTreeSet<[u8; 32]>,
+    session: [u8; 32],
+    sequence: u64,
+    last_issued: Option<u64>,
     start: Instant,
     offset: u64,
     ttl_ms: u64,
@@ -79,7 +91,7 @@ fn identifier(s: &str) -> bool {
 impl HardwareSupervisor {
     pub fn new(
         supervisor: Supervisor,
-        verifier: Box<dyn PlatformVerifier>,
+        mut verifier: Box<dyn PlatformVerifier>,
         key_id: &str,
         profile: &str,
         policy_id: &str,
@@ -94,6 +106,10 @@ impl HardwareSupervisor {
         }
         // Enabling hardware-required mode revokes any previously issued software-fixture lease.
         supervisor.hardware_failure("hardware_mode_enabled");
+        let session = verifier.random_bytes()?;
+        if session == [0; 32] {
+            return Err("invalid_session_randomness");
+        }
         Ok(Self {
             supervisor,
             verifier,
@@ -101,7 +117,9 @@ impl HardwareSupervisor {
             profile: profile.into(),
             policy_id: policy_id.into(),
             pending: None,
-            used: BTreeSet::new(),
+            session,
+            sequence: 0,
+            last_issued: None,
             start: Instant::now(),
             offset: 0,
             ttl_ms: challenge_ttl_ms,
@@ -110,33 +128,52 @@ impl HardwareSupervisor {
     fn now(&self) -> u64 {
         (self.start.elapsed().as_millis().min(u64::MAX as u128) as u64).saturating_add(self.offset)
     }
-    /// Nonce must come from the independent verifier's CSPRNG, not the model or provider.
-    /// This method does not renew authority. It reserves the nonce even if the exchange is abandoned.
+    /// Trusted supervisor port only. One pending exchange, at most ten issuances per second.
+    /// Sequence numbers are never reused within this session, even after failed attempts.
     pub fn challenge(
         &mut self,
-        nonce: [u8; 32],
         instance: &str,
         generation: u64,
     ) -> Result<Challenge, &'static str> {
+        let now = self.now();
+        if self
+            .pending
+            .as_ref()
+            .is_some_and(|(_, deadline)| now >= *deadline)
+        {
+            self.pending = None;
+            self.reject("challenge_expired");
+        }
         if self.pending.is_some() {
             return Err("challenge_pending");
         }
-        if !identifier(instance) || generation == 0 || nonce == [0; 32] {
+        if !identifier(instance) || generation == 0 {
             return Err("invalid_challenge");
         }
-        if self.used.contains(&nonce) {
-            return Err("challenge_replay");
+        if self
+            .last_issued
+            .is_some_and(|last| now.saturating_sub(last) < 100)
+        {
+            return Err("challenge_rate_limited");
         }
-        if self.used.len() >= 128 {
-            return Err("challenge_capacity_reached");
+        let sequence = self
+            .sequence
+            .checked_add(1)
+            .ok_or_else(|| self.reject("challenge_sequence_exhausted"))?;
+        let nonce = self.verifier.random_bytes().map_err(|e| self.reject(e))?;
+        if nonce == [0; 32] {
+            return Err(self.reject("invalid_nonce_randomness"));
         }
         let challenge = Challenge {
+            session: self.session,
+            sequence,
             nonce,
             instance: instance.into(),
             generation,
             policy_id: self.policy_id.clone(),
         };
-        self.used.insert(nonce);
+        self.sequence = sequence;
+        self.last_issued = Some(now);
         self.pending = Some((challenge.clone(), self.now().saturating_add(self.ttl_ms)));
         Ok(challenge)
     }
@@ -152,6 +189,9 @@ impl HardwareSupervisor {
         };
         if self.now() >= expires {
             return Err(self.reject("challenge_expired"));
+        }
+        if proof.session != challenge.session || proof.sequence != challenge.sequence {
+            return Err(self.reject("exchange_mismatch"));
         }
         if proof.nonce != challenge.nonce {
             return Err(self.reject("nonce_mismatch"));

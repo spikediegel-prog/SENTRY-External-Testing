@@ -12,7 +12,7 @@ head -c 4097 -- "$challenge" > "$output/challenge.txt"
 challenge="$output/challenge.txt"
 [[ $(wc -c < "$challenge") -le 4096 ]] || { echo 'Challenge size changed' >&2; exit 2; }
 mapfile -t lines < "$challenge"
-[[ ${#lines[@]} == 5 && ${lines[0]} == 'SENTRY-HARDWARE-IDENTITY-V1' && ${lines[1]} =~ ^nonce=[0-9a-f]{64}$ && ${lines[2]} =~ ^instance=[A-Za-z0-9._-]{1,128}$ && ${lines[3]} =~ ^generation=[1-9][0-9]{0,19}$ && ${lines[4]} =~ ^policy=[A-Za-z0-9._-]{1,128}$ ]] || { echo 'Invalid domain-bound challenge' >&2; exit 2; }
+[[ ${#lines[@]} == 7 && ${lines[0]} == 'SENTRY-HARDWARE-IDENTITY-V2' && ${lines[1]} =~ ^session=[0-9a-f]{64}$ && ${lines[2]} =~ ^sequence=[1-9][0-9]{0,19}$ && ${lines[3]} =~ ^nonce=[0-9a-f]{64}$ && ${lines[4]} =~ ^instance=[A-Za-z0-9._-]{1,128}$ && ${lines[5]} =~ ^generation=[1-9][0-9]{0,19}$ && ${lines[6]} =~ ^policy=[A-Za-z0-9._-]{1,128}$ ]] || { echo 'Invalid domain-bound challenge' >&2; exit 2; }
 [[ $(tail -c 1 "$challenge" | od -An -tu1 | tr -d ' ') == 10 ]] || { echo 'Final LF required' >&2; exit 2; }
 tpm2_readpublic -c "$handle" -f pem -o "$output/public.pem" > "$output/provider-record.txt"
 openssl dgst -sha256 -binary "$challenge" > "$output/challenge.digest"
