@@ -1,0 +1,10 @@
+/target/
+/runs/
+**/.sentry-private/
+.env
+.env.*
+*.key
+*.pem
+*.dpapi
+reference/javascript/runs/
+reference/javascript/*-report.json

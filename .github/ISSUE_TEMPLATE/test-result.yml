@@ -1,0 +1,38 @@
+name: External test result
+description: Report a reproducible local result with synthetic inputs
+title: "[Test result] "
+body:
+  - type: input
+    id: commit
+    attributes:
+      label: Exact commit
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS, architecture, Rust and Node versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Command and minimal synthetic reproduction
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected versus observed behavior and violated invariant
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Evidence classification
+      options:
+        - Verified (named assertion passed)
+        - Recorded (observation)
+        - Inferred (interpretation)
+        - Proposed (new test or feature)
+        - Unknown (insufficient evidence)

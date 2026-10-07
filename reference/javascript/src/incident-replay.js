@@ -1,0 +1,23 @@
+import { readVerifiedJournal } from './journal.js';
+
+export function replayBoundary(path,key,trustedAnchor){
+  const verified=readVerifiedJournal(path,key,{...trustedAnchor,encrypted:true});
+  const timeline=verified.entries.map(({payload:p})=>({sequence:p.n,timeMs:p.time,event:p.type,...p.data}));
+  const intents=timeline.filter(e=>e.event==='action_intent');
+  const reconciliation=timeline.filter(e=>e.event==='action_reconciliation');
+  return {classification:'Verified',scope:'Authenticated local journal and recorded action receipts; not an independent incident truth oracle',anchor:verified.anchor,timeline,
+    actions:intents.map(e=>({id:e.id,action:e.action,target:e.target,session:e.session,receipt:reconciliation.find(r=>r.id===e.id)??null})),
+    unreconciled:intents.filter(e=>!reconciliation.some(r=>r.id===e.id)).map(e=>e.id)};
+}
+
+export function renderBoundaryDashboard(snapshot,replay,rehearsal){
+  const data=JSON.stringify({snapshot,replay,rehearsal}).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+  return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; base-uri 'none'"><title>SENTRY — operator rehearsal</title>
+<style>body{margin:0;background:#0b1523;color:#e4edf8;font:16px system-ui;padding:36px;max-width:1200px}h1{font-size:36px;color:#4de3d2;margin-bottom:8px}p{line-height:1.6}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.card,section{background:#142437;border:1px solid #29465f;padding:22px;border-radius:12px;margin-top:18px}.value{font-size:26px;color:#62e2d7}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #29465f;overflow-wrap:anywhere}select{padding:8px;background:#142437;color:white}small{color:#a5bbd2}.badge{color:#ffd58b}pre{white-space:pre-wrap;overflow-wrap:anywhere}</style>
+<h1>Barriers by SENTRY</h1><p>Operator rehearsal <span class="badge">• Local simulation</span></p><small>Saved snapshot. No live control, external endpoint connection, or automatic restoration. Intervention times use the fixture clock.</small>
+<div id="cards" class="cards"></div><section><h2>Held access and intervention windows</h2><div id="holds"></div></section><section><h2>Memory and learning provenance</h2><div id="learning"></div></section><section><h2>Countermeasure rehearsal</h2><pre id="rehearsal"></pre></section><section><h2>Authenticated incident replay</h2><label>Show events <select id="filter"><option value="all">All</option><option value="action">AI actions</option><option value="memory">Memory reviews</option><option value="containment">Containment and recovery</option></select></label><p id="anchor"></p><table><thead><tr><th>Order</th><th>Fixture time</th><th>Event</th><th>Details</th></tr></thead><tbody id="events"></tbody></table></section>
+<script>const report=${data};const {snapshot:s,replay:r,rehearsal:h}=report;const el=id=>document.getElementById(id);function cell(tag,text){const n=document.createElement(tag);n.textContent=String(text);return n;}
+for(const [label,value] of [['Authority state',s.state],['Generation',s.generation],['Simulated effects',s.effectCount],['Lease remaining',s.leaseRemainingMs+' ms']]){const c=cell('div','');c.className='card';c.append(cell('small',label));const v=cell('div',value);v.className='value';c.append(v);el('cards').append(c);}
+el('holds').append(cell('pre',JSON.stringify({holds:s.holds,windows:s.windows},null,2)));el('learning').append(cell('pre',JSON.stringify({memory:s.memory,candidates:s.candidates},null,2)));el('rehearsal').textContent=JSON.stringify(h,null,2);el('anchor').textContent='Verified journal anchor: '+r.anchor.head+' • '+r.anchor.count+' records • '+r.unreconciled.length+' unreconciled actions';
+function show(){el('events').replaceChildren();for(const e of r.timeline){const f=el('filter').value;if(f==='action'&&!e.event.startsWith('action_'))continue;if(f==='memory'&&!/memory|candidate|source/.test(e.event))continue;if(f==='containment'&&!/containment|isolation|recovery|release|window/.test(e.event))continue;const row=document.createElement('tr');for(const value of [e.sequence,e.timeMs+' ms',e.event,JSON.stringify(Object.fromEntries(Object.entries(e).filter(([k])=>!['sequence','timeMs','event'].includes(k))))])row.append(cell('td',value));el('events').append(row);}}el('filter').addEventListener('change',show);show();</script></html>`;
+}

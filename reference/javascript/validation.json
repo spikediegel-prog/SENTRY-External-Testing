@@ -1,0 +1,457 @@
+{
+  "classification": "Recorded",
+  "scope": "Local simulated adapters and protocol assertions only",
+  "testsPassed": 77,
+  "testsFailed": 0,
+  "guardianScenariosPassed": 19,
+  "nodeVersion": "v24.19.0",
+  "policyHash": "e31594865d4ff119e785db1fe8ad9c856788a41096b651e03e04ec75f583c4a4",
+  "sourceHashes": [
+    {
+      "sha256": "E578F55DB7532619189EF26C7839A08F510FC63B8CCBE12A8FC8536254F85244",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\analysis-process.js"
+    },
+    {
+      "sha256": "955560333CB8064BBAAF1C210E53C7BD0F8AF54298F65FEE1AA5B67170C495BF",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\analysis-thread.js"
+    },
+    {
+      "sha256": "A9D2B06E03775524A895341E80AAF9CD9BEEBB47177104F0FD98A044B5917BB0",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\background-demo.js"
+    },
+    {
+      "sha256": "F4694F2CE62A9EF9C99FCFF1848CA82D259C19776D789274ABEA0DA78F367DC6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\background-learning.js"
+    },
+    {
+      "sha256": "093AC3B6088F1E73691C413D61086430E816AE8544CAF8ED6FD0CEA60EBFF8D3",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\controller.js"
+    },
+    {
+      "sha256": "3161819077C87615A92737F289ECF403B8A4E76B69DDF6957E1E92541414D8B6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\countermeasures.js"
+    },
+    {
+      "sha256": "37089F3C63DDF898B291EDB6CD2191DB8142BE4B774289D967FCFD569F3F7D8D",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\cve-library.js"
+    },
+    {
+      "sha256": "D2F871149D5720FC2F97F5D6B2B4BA952488BF1A8E5E96CDD7CDAF50E51F2CF7",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\cve-scenarios.js"
+    },
+    {
+      "sha256": "3E26B9B113BE769FDFA752B5F3D2D70400D0F6D6D20FE6212B69C5CE2947281F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\data-protection.js"
+    },
+    {
+      "sha256": "62587B01145E05A5D1861DC59CCAE17F1E0C3667BCB49899292490393D08E375",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\demo.js"
+    },
+    {
+      "sha256": "FF9C79F5AE8119F565CA78F0B4A9B4B96EED6B32F4D2C625E4DD29F1948465A3",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\endpoint-adapter.js"
+    },
+    {
+      "sha256": "F4D170B84FF7F8786251C4466A4E37D1E979C5C68A7200A5919903C9FB225FD0",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\endpoint-demo.js"
+    },
+    {
+      "sha256": "732C9E9719B4CBFFB7BFB981EE22EEE6E2B6AD27BD70BA0446C337528702BCC6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\guardian-learning.js"
+    },
+    {
+      "sha256": "5D4A91C422F06FA1F6C300EF3B212A9C564E94471466E69E2A7C5E1EDD62A86F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\guardian-permutations.js"
+    },
+    {
+      "sha256": "586F266D724AB09F53D321936285E6B5105B699AE6C5980B534E90FBD9D481A6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\guardian.js"
+    },
+    {
+      "sha256": "5DE0277E1542A05A1C799EA478F8D7A56A0AEB98C803EE1058894D27EC468E5B",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\host.js"
+    },
+    {
+      "sha256": "6B0D31116F2C8D120AB40E196E3E565FBD9F93A3E7FB181F362C2EE3143D82D8",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\import-cves.js"
+    },
+    {
+      "sha256": "ED52DB6F54FA1B790E1DB4376C332B19FBAADEDCF9361CF9D0142FD31EB7829E",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\journal.js"
+    },
+    {
+      "sha256": "3E1EFCE08CDDC95DDBB5C8E98598D1DCF4C505C3D47F666ECD1E3A9C8AF424DC",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\key-vault.js"
+    },
+    {
+      "sha256": "53F04B106D5AA0665AE95A374D375D2B66F703D9BB790770F80FA64A5DACBAD5",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\lab.js"
+    },
+    {
+      "sha256": "919ADEB8863BCF08A34F07D25F429CE11A9664B1BBF8F59B33E0A8A3F377FCF6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\learning-crypto.js"
+    },
+    {
+      "sha256": "6C8C9C88713DD23BE6152EC1D7721540E83B485D49383898643037C9FB306535",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\learning-demo.js"
+    },
+    {
+      "sha256": "2C6130665B4242DCCFFFC03ACEBFA8028B73084536A25974E690FE3CD2A9466F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\learning-host.js"
+    },
+    {
+      "sha256": "9D2CC32D5A48EDAC7BE40FD4C47C6397A1AA520B8AD32672CA759939E16D51E2",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\learning-pipeline.js"
+    },
+    {
+      "sha256": "B1473D721CA72B4B6A880F70339A05DFFDFDF9B12830B1FA4B7B915264F02A6F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\load-demo.js"
+    },
+    {
+      "sha256": "9092B666A7EE69344A8230E001DD039029268EA19B26E50484D01BF18E965F84",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\operator-alerts.js"
+    },
+    {
+      "sha256": "D9A221AFD17E41691150682C51040D0DCF685C012F9C529299A282D266E24136",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\operator-demo.js"
+    },
+    {
+      "sha256": "32CD4459DDAAC9BE35F60D3417CD7B68188944E92C19C8C3859F3A4646506C1A",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\permutation-demo.js"
+    },
+    {
+      "sha256": "3F5CAA4A558D38F11C9268130E324DBFDE6A412B4FF9C5A2A0F4617784981391",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\poison-features.js"
+    },
+    {
+      "sha256": "8758B776641CCF6633DF8203B50D396169F83112AC4C60B3525FAF2FC9704E8E",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\poison-model.js"
+    },
+    {
+      "sha256": "10F2054FF118A0854AE3BF5FB6BC40771A6AA9DCB301B1B0B5379BA5201351F9",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\protect-archives.js"
+    },
+    {
+      "sha256": "2EBDE486DF5DE84D9E09F1E6DF4A089735DB32FCB46F7B149EB052A1E77D8B68",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\protected-artifacts.js"
+    },
+    {
+      "sha256": "C61E2E6D8E1E321D0ADC9A6ED43BE61F86DEAD0D10E3E6EC025F1CD404D32F90",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\protocol.js"
+    },
+    {
+      "sha256": "42AD2586610A233B0F912D2770D1F841605C05BCACC15F3C765EC409F121BC65",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\read-evidence.js"
+    },
+    {
+      "sha256": "7ADFA8C8F00839EE3D4BBD2EA6314DB876E6D6F22B783C82BF592138891934E8",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\replay-learning.js"
+    },
+    {
+      "sha256": "9DD4D1FC51DF9515306867C5EE6043E8FEFEAF39EA21FAAD1372519195A1AD48",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\search-cves.js"
+    },
+    {
+      "sha256": "BB5F0046950B6EC7655649A8CCD95E208E5793784063686E7AF493FAA6CF0C19",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\secure-channel.js"
+    },
+    {
+      "sha256": "65E7C80304407573F745AE7D216E5516D5AA4ABAB2AFE606B175EE382560BC6C",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\security-demo.js"
+    },
+    {
+      "sha256": "74C9AD1CBDEE0AC65DF56CAB8745806232C467BACF1359F0566FCA5B20B4E017",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\sentry-host.js"
+    },
+    {
+      "sha256": "9B2CB5D985E1DA4A6513EC3E64C20F24495E23BBE1532319E91647D906EB2E2B",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\sentry.js"
+    },
+    {
+      "sha256": "CECA19BD0DD8B0465222DBFCCAF78F52E3F96E2FBE30B62DAB243501E609C765",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\training-export.js"
+    },
+    {
+      "sha256": "85F7B18BF909169FD03591F0F30FABA7F9EBF0C9D89AE6653B170EC2E24434A9",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\verify-protected-archives.js"
+    },
+    {
+      "sha256": "DDD7952B5C544CF95A39CBBD9C5822D029EBCE484A1CD4D48812AC2FCF917E8C",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\worker-client.js"
+    },
+    {
+      "sha256": "1DC07BF7B5290E0C16BCED002D536FA2B51FFF44CD2E1B19182F19FB8D671691",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\src\\workload-pool.js"
+    },
+    {
+      "sha256": "9D1EC791A076C0239C756C7F3CAA4156A7FCCE5C6526BD3E55EF2A61A3AF4A7C",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\controller-failure.test.js"
+    },
+    {
+      "sha256": "5EA43173CE609BB559EC905768786E6F684C11C3495B56D43179A291AF48DCFA",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\endpoint.test.js"
+    },
+    {
+      "sha256": "1078F754B3A54E2C03A18091AEEC2FB14018476965A7F05ED2136AB717857D4F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\guardian.test.js"
+    },
+    {
+      "sha256": "DBE7909C2C5577A36D8A2228CF26BE76CB33F26A5D7D6CCC4CD8F33907A0DDE1",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\journal-delta.test.js"
+    },
+    {
+      "sha256": "6BB301549D83F5895FD6374FBF44AA075643154F6BE2E85FF395141BF4F327A1",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\learning.test.js"
+    },
+    {
+      "sha256": "4631B6BC68A844844F9CF1BCE6F0F7104CDE0356C4872A2B3BCEAE57B5196818",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\operator-alerts.test.js"
+    },
+    {
+      "sha256": "4BAAB3E394789A22A6278D94F8AD03D5BC51A1D221C73303F630D05B49E78FE3",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\permutations.test.js"
+    },
+    {
+      "sha256": "CB92ED02348BB098302BAAF7DBF9AC606EB5B45EF86B54D4E92B46937EDA9322",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\protection-countermeasures.test.js"
+    },
+    {
+      "sha256": "C0205E6F822A54EF32302F8042B372044DCC7FD83348D06BF4925476B7B06AA1",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\tests\\workload.test.js"
+    },
+    {
+      "sha256": "8E9FCADF97168E49FB68423576B3459C047F2C9A58CCAED7B185005DE711825F",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\countermeasure.schema.json"
+    },
+    {
+      "sha256": "E15B7A6A9603FE8C8192711C13120C0895ACE3377A786FECF1C133A575048712",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\endpoint-policy.schema.json"
+    },
+    {
+      "sha256": "DB893D3E97A3D48081340B55CBE811435C4D824952FFDA7838F533C0E6A183DC",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\policy.schema.json"
+    },
+    {
+      "sha256": "733FB045B4737F9012CA04714E311D508E0CCB4F2776021EA6D20E063BC7C9F3",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\shadow-model.schema.json"
+    },
+    {
+      "sha256": "55DFEF4518A1250A09C13DCCEF3A60F7D1D8DD0BF9E79268758EA8500CD05CBE",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\state-machine.json"
+    },
+    {
+      "sha256": "4878E4F1CCB23F1251176BF86CEDC63A46C3DB3823FA0C43794A8E8944D9CD41",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\schemas\\workload.schema.json"
+    },
+    {
+      "sha256": "B52D2402248423EF420FF2B5B34E76498C45B85F15EB9905D1CEEF0D75A0181E",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\policy.json"
+    },
+    {
+      "sha256": "53DA1A0C686251D16FF8F1F3ECD875779C9DFD300744759ABD867999643EF021",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\endpoint-policy.json"
+    },
+    {
+      "sha256": "970F43FDCF930F808E2820A4711837D3B3667EF3FAB377D9703D7B4C5FC7B07B",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\workload.json"
+    },
+    {
+      "sha256": "637B2515B7647662A2F50284E52D8D3EB293DD1F71635B53603B0120CF694DD6",
+      "file": "C:\\Users\\spike\\Documents\\Codex\\2026-10-05\\referenced-chatgpt-conversation-this-is-an-4\\outputs\\barriers-sentry\\package.json"
+    }
+  ],
+  "limitations": [
+    "No real network actions",
+    "No OS sandbox proof",
+    "Attestation and device proofs are simulated",
+    "Real-world detection accuracy unknown"
+  ],
+  "deltaLogging": {
+    "guardianBytesSaved": 88972.0,
+    "guardianPercentSaved": 10.9,
+    "classification": "Recorded",
+    "guardianDeltaRecords": 1102.0,
+    "guardianFullBytes": 812898.0
+  },
+  "parallelWorkload": {
+    "classification": "Recorded",
+    "threadsPerProcess": 2,
+    "noiseSubmitted": 160,
+    "noiseProcessed": 34,
+    "productionDoSResistance": "Unknown",
+    "processes": 2,
+    "backpressure": 126,
+    "productionSpeedup": "Unknown",
+    "availableLogicalProcessors": 32,
+    "controlResponseMs": 18.328900000000004
+  },
+  "learning": {
+    "classification": "Recorded",
+    "cveReferences": 3,
+    "localCveScenarios": 3,
+    "verifiedSimulationSamples": 24,
+    "splits": {
+      "train": 289,
+      "validation": 96,
+      "test": 200
+    },
+    "poisonRecall": 0.375,
+    "cleanFalsePositiveRate": 0,
+    "heldOutFamilyRecall": 0,
+    "authority": "none",
+    "mode": "shadow_only",
+    "llmImplemented": false,
+    "automaticTrainingAdmission": false,
+    "savedWeightsReproduced": true
+  },
+  "backgroundLearning": {
+    "classification": "Verified",
+    "scope": "Local subprocess and controller protocol tests",
+    "concurrentJobs": 1,
+    "heapLimitMiB": 128,
+    "deadlineMs": 30000,
+    "candidateSigned": false,
+    "activeModelChanged": false,
+    "automaticIngestion": false,
+    "buttonActions": [
+      "CHALLENGE",
+      "CONTAIN"
+    ],
+    "directExecution": false,
+    "osSandbox": "Unknown"
+  },
+  "protection": {
+    "classification": "Recorded",
+    "newControllerJournalsEncrypted": true,
+    "emergencyReceiptsEncrypted": true,
+    "localChildTransportEncrypted": true,
+    "replayAndContextTestsPassed": true,
+    "windowsUserKeyRecoveryVerified": true,
+    "archivesProtected": 149,
+    "archiveCiphertextHashesChecked": 149,
+    "exactTextArchivesRecovered": 126,
+    "jsonArtifactsReadable": 23,
+    "privateVaultBundled": false,
+    "remoteTLS": "Proposed",
+    "sameUserHostIsolation": "Unknown",
+    "countermeasureCandidates": 3,
+    "countermeasureAutoInstallation": false,
+    "countermeasureChecks": {
+      "forgedEvidenceDenied": true,
+      "preauthorizedProposalAccepted": true,
+      "protectedControlSkipped": true,
+      "expiredAuthorityDenied": true,
+      "policyHashUnchanged": true,
+      "encryptedEvidence": true
+    }
+  },
+  "permutations": {
+    "classification": "Recorded",
+    "scope": "Finite synthetic batch permutations only",
+    "splitCounts": {
+      "train": 120,
+      "validation": 32,
+      "test": 80
+    },
+    "combinationCounts": {
+      "train": 5,
+      "validation": 4,
+      "test": 5
+    },
+    "originalOnSameTest": {
+      "count": 80,
+      "tp": 24,
+      "tn": 40,
+      "fp": 0,
+      "fn": 16,
+      "precision": 1,
+      "recall": 0.6,
+      "falsePositiveRate": 0,
+      "accuracy": 0.8
+    },
+    "augmentedTest": {
+      "count": 80,
+      "tp": 40,
+      "tn": 38,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0.9523809523809523,
+      "recall": 1,
+      "falsePositiveRate": 0.05,
+      "accuracy": 0.975
+    },
+    "collisionProbes": [
+      {
+        "name": "unrecognized_instruction_wording",
+        "classification": "Recorded",
+        "scope": "Explicit synthetic instruction attempt outside the current phrase heuristic",
+        "featuresIdentical": true,
+        "risk": 0.521814328782333,
+        "flagged": false,
+        "distinguishableByCurrentModel": false
+      },
+      {
+        "name": "reversed_event_order",
+        "classification": "Proposed",
+        "scope": "Feature indistinguishability only; a harmful stateful sequence is not implemented",
+        "featuresIdentical": true,
+        "risk": 0.521814328782333,
+        "flagged": false,
+        "distinguishableByCurrentModel": false
+      }
+    ],
+    "authorityChecks": {
+      "policyUnchanged": true,
+      "forgedEvidenceDenied": true,
+      "expiredAuthorityDenied": true,
+      "activeModelChanged": false,
+      "automaticPromotion": false
+    },
+    "sequenceAware": false,
+    "activeModelChanged": false
+  },
+  "endpointIntegration": {
+    "classification": "Recorded",
+    "mode": "simulate_only_disabled_by_default",
+    "providers": [
+      "microsoft-defender",
+      "crowdstrike-falcon"
+    ],
+    "checks": {
+      "alertsOnlyChallenge": true,
+      "replayDenied": true,
+      "windowPreserved": true,
+      "explicitHostScopeRequired": true,
+      "simulatedIsolationReconciled": true,
+      "expirySeversAuthority": true,
+      "workerCannotRestoreEndpoints": true
+    },
+    "bootScopeIncludedInEnabledAttestation": true,
+    "fixturePolicyHash": "183888aa9aa7ee7d8b0a2cff1c09b99875f855262a2bde7fe37dd0c84c8a4c51",
+    "realVendorApiCalls": false,
+    "vendorCredentialsProvided": false,
+    "realDeviceIsolation": false,
+    "realVendorInteroperability": "Proposed",
+    "automaticEndpointRestore": false
+  },
+  "operatorContainmentAlerts": {
+    "classification": "Recorded",
+    "checks": {
+      "containmentFailureDetected": true,
+      "authorityRevokedBeforeAlert": true,
+      "affectedAccessHeld": true,
+      "acknowledgmentDoesNotRestoreAccess": true,
+      "cleanInstanceDoesNotReleaseHold": true,
+      "noAutomaticAccessPromise": true
+    },
+    "delivery": "local_status_only",
+    "sacrificialCore": "not_implemented",
+    "recentAlertLimit": 64,
+    "authenticatedHumanAcknowledgment": true,
+    "acknowledgmentGrantsAccess": false,
+    "cleanSentryInstanceClearsHold": false,
+    "holdReleaseImplemented": false,
+    "wholeControllerHoldRecovery": "Proposed",
+    "externalMessagesSent": false
+  }
+}

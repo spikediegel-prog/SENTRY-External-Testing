@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "leaseMs": 30000,
+  "interventionMs": 5000,
+  "maxPending": 64,
+  "maxEvidence": 2048,
+  "sessions": ["session-alice", "session-bob", "control-health"],
+  "protectedSessions": ["control-health"],
+  "powers": ["DROP", "CHALLENGE", "CONTAIN", "ISOLATE", "REVOKE", "RESTORE"],
+  "profiles": {
+    "credential_misuse": {
+      "immediate": ["CONTAIN"],
+      "delayed": ["ISOLATE", "REVOKE"]
+    },
+    "confirmed_exfiltration": {
+      "immediate": ["CONTAIN", "ISOLATE", "REVOKE"],
+      "delayed": []
+    }
+  }
+}

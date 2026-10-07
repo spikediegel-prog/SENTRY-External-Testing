@@ -1,0 +1,20 @@
+{
+  "classification": "Recorded",
+  "recordedAtUtc": "2026-10-07T02:42:25.118Z",
+  "platform": "win32",
+  "architecture": "x64",
+  "rust": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+  "node": "v24.19.0",
+  "checks": {
+    "nativeAdversarialTestsPassed": 22,
+    "compileFailBoundaryChecksPassed": 2,
+    "sharedWorkerCasesMatched": 17,
+    "negativeProtocolAssertionsPassed": 10,
+    "defaultLibraryBuild": "Passed",
+    "releaseBuild": "Passed",
+    "releaseDemo": "Passed",
+    "format": "Passed",
+    "clippyWarningsDenied": "Passed"
+  },
+  "scope": "Local Windows simulation only; Linux verification requires successful native CI. No full JS parity, authenticated native storage, production isolation or real attestation claim."
+}

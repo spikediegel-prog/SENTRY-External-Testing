@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Review-only simulated countermeasure candidate",
+  "type":"object","additionalProperties":false,
+  "required":["version","classification","status","trainingDigest","rule"],
+  "properties":{
+    "version":{"const":1},"classification":{"const":"Proposed"},"status":{"const":"review_required"},
+    "trainingDigest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "rule":{"type":"object","additionalProperties":false,"required":["deviceMismatch","missingProof","button","uncertainty"],
+      "properties":{"deviceMismatch":{"enum":[0,1]},"missingProof":{"enum":[0,1]},"button":{"enum":["CHALLENGE","CONTAIN"]},"uncertainty":{"enum":[0.1,0.8]}},
+      "allOf":[
+        {"anyOf":[{"properties":{"deviceMismatch":{"const":1}}},{"properties":{"missingProof":{"const":1}}}]},
+        {"if":{"properties":{"button":{"const":"CONTAIN"}}},"then":{"properties":{"deviceMismatch":{"const":1},"missingProof":{"const":1},"uncertainty":{"const":0.1}}},"else":{"properties":{"uncertainty":{"const":0.8}}}}
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "classification": "Recorded",
+  "scope": "Separate local AI action boundary fixture",
+  "initial": "RECOVERY_REQUIRED",
+  "states": ["RECOVERY_REQUIRED", "NORMAL"],
+  "transitions": [
+    {"from":"RECOVERY_REQUIRED","to":"NORMAL","trigger":"signed recovery","guards":["new instance","increasing generation","integrity true","matching boot policy hash","healthy evidence path"]},
+    {"from":"NORMAL","to":"RECOVERY_REQUIRED","trigger":"lease expiry, integrity failure, evidence failure, or actuator postcondition failure","effects":["expire execution","clear temporary permits","preserve session holds"]}
+  ],
+  "sessionStates": ["available", "held", "isolated"],
+  "releaseGuards": ["signed human request", "valid lease", "newer recovery generation", "clean simulated check bound to current hold"],
+  "authorityExpansion": false
+}

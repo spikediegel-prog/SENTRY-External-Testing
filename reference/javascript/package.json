@@ -1,0 +1,20 @@
+{
+  "name": "barriers-by-sentry-local-proof",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "ai-boundary": "node src/ai-boundary-demo.js",
+    "guardian": "node src/guardian.js",
+    "demo": "node src/demo.js",
+    "load": "node src/load-demo.js",
+    "import-cves":"node src/import-cves.js",
+    "search-cves":"node src/search-cves.js",
+    "learning":"node src/learning-demo.js",
+    "permutations":"node src/permutation-demo.js",
+    "endpoints":"node src/endpoint-demo.js",
+    "operator":"node src/operator-demo.js"
+  }
+}

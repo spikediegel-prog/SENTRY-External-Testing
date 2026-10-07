@@ -1,0 +1,24 @@
+[package]
+name = "sentry-external-testing"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Local simulated SENTRY authority-boundary experiments for external testing"
+publish = false
+
+[features]
+test-fixtures = []
+
+[lib]
+path = "rust/src/lib.rs"
+
+[[bin]]
+name = "sentry-lab"
+path = "rust/src/main.rs"
+required-features = ["test-fixtures"]
+
+[profile.release]
+overflow-checks = true
+
+[lints.rust]
+unsafe_code = "forbid"

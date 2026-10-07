@@ -1,0 +1,31 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Barriers local boot policy v1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["version","leaseMs","interventionMs","maxPending","maxEvidence","sessions","protectedSessions","powers","profiles"],
+  "$comment":"Runtime also checks interventionMs <= leaseMs, protectedSessions subset of sessions, and profile actions subset of powers. Policy is immutable after boot.",
+  "properties":{
+    "version":{"const":1},
+    "leaseMs":{"type":"integer","minimum":1000,"maximum":60000},
+    "interventionMs":{"type":"integer","minimum":1,"maximum":60000},
+    "maxPending":{"type":"integer","minimum":1,"maximum":10000},
+    "maxEvidence":{"type":"integer","minimum":1,"maximum":10000},
+    "sessions":{"type":"array","minItems":1,"uniqueItems":true,"items":{"type":"string"}},
+    "protectedSessions":{"type":"array","uniqueItems":true,"items":{"type":"string"}},
+    "powers":{"type":"array","uniqueItems":true,"contains":{"const":"DROP"},"items":{"enum":["DROP","CHALLENGE","CONTAIN","ISOLATE","REVOKE","RESTORE"]}},
+    "profiles":{
+      "type":"object","additionalProperties":false,"required":["credential_misuse","confirmed_exfiltration"],
+      "properties":{"credential_misuse":{"$ref":"#/$defs/profile"},"confirmed_exfiltration":{"$ref":"#/$defs/profile"}}
+    }
+  },
+  "$defs":{
+    "profile":{
+      "type":"object","additionalProperties":false,"required":["immediate","delayed"],
+      "properties":{
+        "immediate":{"type":"array","items":{"enum":["CONTAIN","ISOLATE","REVOKE"]}},
+        "delayed":{"type":"array","items":{"enum":["CONTAIN","ISOLATE","REVOKE"]}}
+      }
+    }
+  }
+}

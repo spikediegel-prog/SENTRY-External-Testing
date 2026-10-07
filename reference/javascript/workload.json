@@ -1,0 +1,8 @@
+{
+  "processes": 2,
+  "threadsPerProcess": 2,
+  "maxPending": 32,
+  "reservedPending": 8,
+  "taskTimeoutMs": 3000,
+  "maxRestarts": 2
+}

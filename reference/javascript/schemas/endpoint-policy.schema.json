@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Boot-only simulated endpoint integration scope",
+  "type":"object","additionalProperties":false,"required":["version","mode","bindings"],
+  "properties":{
+    "version":{"const":1},"mode":{"enum":["disabled","simulate"]},
+    "bindings":{"type":"array","maxItems":16,"items":{"type":"object","additionalProperties":false,
+      "required":["session","provider","deviceId","allowIsolation"],
+      "properties":{"session":{"type":"string"},"provider":{"enum":["microsoft-defender","crowdstrike-falcon"]},
+        "deviceId":{"type":"string","pattern":"^[A-Za-z0-9_-]{1,100}$"},"allowIsolation":{"type":"boolean"}}
+    }}
+  },
+  "allOf":[{"if":{"properties":{"mode":{"const":"disabled"}}},"then":{"properties":{"bindings":{"maxItems":0}}}}]
+}

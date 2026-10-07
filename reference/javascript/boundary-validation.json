@@ -1,0 +1,28 @@
+{
+  "classification": "Recorded",
+  "recordedAtUtc": "2026-10-07T02:20:30.922Z",
+  "scope": "Local simulated controllers and AI boundary; no production protection claim",
+  "testsPassed": 104,
+  "testsFailed": 0,
+  "newBoundaryTests": 27,
+  "nodeVersion": "v24.19.0",
+  "evidence": "boundary-validation.tap",
+  "rehearsal": {
+    "classification": "Recorded",
+    "scope": "Finite synthetic phrase screening; candidate action kind does not alter detector",
+    "candidateId": "candidate-1",
+    "caught": 1,
+    "missed": 1,
+    "disrupted": 1,
+    "legitimate": 2,
+    "installed": false
+  },
+  "heldAfterCleanRecovery": 1,
+  "unreconciledActions": 0,
+  "dashboard": {
+    "scriptSyntax": "Checked",
+    "textInjectionHandling": "Verified by local assertion",
+    "visualPreview": "Unknown: local file URL blocked by browser policy",
+    "liveControls": false
+  }
+}

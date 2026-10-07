@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "classification": "Recorded",
+  "purpose": "reference_only_not_training_labels",
+  "entries": [
+    {
+      "id": "CVE-2023-4966",
+      "state": "PUBLISHED",
+      "dateUpdated": "2026-07-31T03:55:28.627Z",
+      "title": "Unauthenticated sensitive information disclosure",
+      "description": "Sensitive information disclosure in NetScaler ADC and NetScaler Gateway when configured as a Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) or AAA  virtual server.",
+      "products": [
+        {
+          "vendor": "Citrix",
+          "product": "NetScaler ADC"
+        },
+        {
+          "vendor": "Citrix",
+          "product": "NetScaler Gateway"
+        }
+      ],
+      "weaknesses": [
+        "CWE-119"
+      ],
+      "references": [
+        "https://support.citrix.com/article/CTX579459"
+      ],
+      "classification": "Recorded",
+      "trust": "untrusted_reference_data",
+      "authority": "none",
+      "source": "https://cveawg.mitre.org/api/cve/CVE-2023-4966",
+      "rawSha256": "b68af3b2aa2dccb713733c707d040b1feb70eb006bda267b9f3b5d5cfbf7f379",
+      "snapshot": "snapshots/b68af3b2aa2dccb713733c707d040b1feb70eb006bda267b9f3b5d5cfbf7f379.json",
+      "importedAt": "2026-10-06T13:36:25.688Z"
+    },
+    {
+      "id": "CVE-2023-42793",
+      "state": "PUBLISHED",
+      "dateUpdated": "2025-10-21T23:05:37.592Z",
+      "title": "CVE-2023-42793",
+      "description": "In JetBrains TeamCity before 2023.05.4 authentication bypass leading to RCE on TeamCity Server was possible",
+      "products": [
+        {
+          "vendor": "JetBrains",
+          "product": "TeamCity"
+        }
+      ],
+      "weaknesses": [
+        "CWE-288"
+      ],
+      "references": [
+        "https://www.jetbrains.com/privacy-security/issues-fixed/",
+        "https://blog.jetbrains.com/teamcity/2023/09/cve-2023-42793-vulnerability-post-mortem/",
+        "https://attackerkb.com/topics/1XEEEkGHzt/cve-2023-42793",
+        "https://www.securityweek.com/recently-patched-teamcity-vulnerability-exploited-to-hack-servers/",
+        "https://www.rapid7.com/blog/post/2023/09/25/etr-cve-2023-42793-critical-authentication-bypass-in-jetbrains-teamcity-ci-cd-servers/",
+        "https://www.sonarsource.com/blog/teamcity-vulnerability/"
+      ],
+      "classification": "Recorded",
+      "trust": "untrusted_reference_data",
+      "authority": "none",
+      "source": "https://cveawg.mitre.org/api/cve/CVE-2023-42793",
+      "rawSha256": "263411bba7c76c66df8263a47d3bad78c4af2a2687c46806a1c81e37babf7d43",
+      "snapshot": "snapshots/263411bba7c76c66df8263a47d3bad78c4af2a2687c46806a1c81e37babf7d43.json",
+      "importedAt": "2026-10-06T13:36:25.992Z"
+    },
+    {
+      "id": "CVE-2024-3094",
+      "state": "PUBLISHED",
+      "dateUpdated": "2026-08-04T07:05:54.671Z",
+      "title": "Xz: malicious code in distributed source",
+      "description": "Malicious code was discovered in the upstream tarballs of xz, starting with version 5.6.0. \r\nThrough a series of complex obfuscations, the liblzma build process extracts a prebuilt object file from a disguised test file existing in the source code, which is then used to modify specific functions in the liblzma code. This results in a modified liblzma library that can be used by any software linked against this library, intercepting and modifying the data interaction with this library.",
+      "products": [
+        {
+          "vendor": "unknown",
+          "product": "xz"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat Enterprise Linux 10"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat Enterprise Linux 6"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat Enterprise Linux 7"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat Enterprise Linux 8"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat Enterprise Linux 9"
+        },
+        {
+          "vendor": "Red Hat",
+          "product": "Red Hat JBoss Enterprise Application Platform 8"
+        }
+      ],
+      "weaknesses": [
+        "CWE-506"
+      ],
+      "references": [
+        "https://access.redhat.com/security/cve/CVE-2024-3094",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2272210",
+        "https://www.openwall.com/lists/oss-security/2024/03/29/4",
+        "https://www.redhat.com/en/blog/urgent-security-alert-fedora-41-and-rawhide-users"
+      ],
+      "classification": "Recorded",
+      "trust": "untrusted_reference_data",
+      "authority": "none",
+      "source": "https://cveawg.mitre.org/api/cve/CVE-2024-3094",
+      "rawSha256": "f9a8e892f8d23a0289a6002fd1b6a5d6c2c60aeba536c6ee20a673751f902095",
+      "snapshot": "snapshots/f9a8e892f8d23a0289a6002fd1b6a5d6c2c60aeba536c6ee20a673751f902095.json",
+      "importedAt": "2026-10-06T13:36:26.093Z"
+    }
+  ]
+}

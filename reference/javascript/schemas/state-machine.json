@@ -1,0 +1,15 @@
+{
+  "classification": "Recorded",
+  "initial": "RECOVERY_REQUIRED",
+  "states": ["NORMAL", "DEGRADED", "QUARANTINED", "SAFE_MODE", "RECOVERY_REQUIRED"],
+  "transitions": [
+    {"from":"RECOVERY_REQUIRED","to":"NORMAL","trigger":"signed_clean_replacement","guards":["healthy_journal","matching_policy_digest","integrity_true","new_instance","next_generation"],"effects":["mint_rotated_instance_capability","finite_lease"]},
+    {"from":"NORMAL","to":"NORMAL","trigger":"signed_fresh_attestation","guards":["current_identity_generation","healthy_journal","matching_policy_digest","integrity_true"],"effects":["renew_existing_lease"]},
+    {"from":"NORMAL","to":"DEGRADED","trigger":["lease_expired","integrity_failure","evidence_failure","capacity_exhaustion"],"effects":["erase_capability","zero_deadline","sever_execution","clear_pending"]},
+    {"from":"DEGRADED","to":"QUARANTINED","trigger":"synchronous_failure_progression","effects":["record_preserved_snapshot"]},
+    {"from":"QUARANTINED","to":"SAFE_MODE","trigger":"synchronous_failure_progression","effects":["retain_fixed_deterministic_barriers"]},
+    {"from":"SAFE_MODE","to":"RECOVERY_REQUIRED","trigger":"synchronous_failure_progression","effects":["record_alert","require_clean_replacement"]}
+  ],
+  "failure_gate_revocation_precedes_evidence_io": true,
+  "worker_may_change_transitions": false
+}

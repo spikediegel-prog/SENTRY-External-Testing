@@ -1,0 +1,42 @@
+name: External testing — Windows and Linux
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install stable Rust with checks
+        run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+      - name: Format check
+        run: cargo +stable fmt --check
+      - name: Minimal library without fixture helpers
+        run: cargo +stable check --locked
+      - name: Adversarial Rust tests
+        run: cargo +stable test --locked --all-features
+      - name: Lint
+        run: cargo +stable clippy --locked --all-targets --all-features -- -D warnings
+      - name: Build native lab
+        run: cargo +stable build --locked --release --features test-fixtures
+      - name: Run simulation and worker-protocol proofs
+        shell: bash
+        run: |
+          binary=target/release/sentry-lab
+          if [ "$RUNNER_OS" = "Windows" ]; then binary="$binary.exe"; fi
+          "$binary" --demo
+          node testing/differential.mjs "$binary"
+          node testing/negative-protocol.mjs "$binary"
+      - name: Upload native simulation executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: sentry-lab-${{ matrix.os }}
+          path: target/release/sentry-lab*
+          if-no-files-found: error

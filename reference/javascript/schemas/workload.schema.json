@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Trusted local analysis workload configuration",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["processes","threadsPerProcess","maxPending","reservedPending","taskTimeoutMs","maxRestarts"],
+  "$comment":"Runtime additionally requires processes * threadsPerProcess <= 8. These settings cannot be changed by SENTRY and confer no authority.",
+  "properties":{
+    "processes":{"type":"integer","minimum":1,"maximum":4},
+    "threadsPerProcess":{"type":"integer","minimum":1,"maximum":4},
+    "maxPending":{"type":"integer","minimum":1,"maximum":256},
+    "reservedPending":{"type":"integer","minimum":1,"maximum":64},
+    "taskTimeoutMs":{"type":"integer","minimum":100,"maximum":10000},
+    "maxRestarts":{"type":"integer","minimum":0,"maximum":3}
+  }
+}

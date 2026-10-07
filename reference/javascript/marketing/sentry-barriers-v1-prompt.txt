@@ -1,0 +1,33 @@
+Generation mode: built-in image_gen tool
+
+Create a polished premium enterprise cybersecurity marketing infographic, wide landscape 16:9, high resolution, with very readable professional typography. Brand: SENTRY. Product: Barriers by SENTRY. This is a concept diagram of a local research prototype, not proof of production capabilities.
+
+Headline across the top, exact text: "Protect your AI investment with Barriers."
+Smaller brand line: "Barriers by SENTRY"
+Subheading: "Layered containment. Independent control. Human oversight."
+
+Main visual: five large, distinct concentric crescent-shaped protective barriers, open toward the right, curving around a protected central area on the right. Incoming attacks approach from the left. Each crescent is a luminous, elegant semi-transparent curved shield, with precise outlines and generous separation. Navy/charcoal background, teal/cyan/blue shields with subtle violet at the inner authority boundary, restrained sophisticated lighting. Avoid clutter, excessive padlocks, decorative fake UI, and fantasy weapons.
+
+Behind all five crescents, on the right, place two distinct protected objects with exact labels: "SENTRY" above a small elegant intelligence node, and "YOUR AI" above a larger protected model/workflow node. Show a small separate control gate with label "Independent authority control". SENTRY proposes; the gate controls actions. Do not depict SENTRY granting itself new powers.
+
+Show orange/red arrows and particles labeled "Attack / suspicious activity" entering from the left. Most noise particles stop and dissolve at the outer first shield; a few arrows pass through to the second, with some stopped there; remaining unresolved suspicious arrows reach the third and stop in a contained pocket, with a much smaller remaining path stopping at the fourth. A final thin unauthorized-action arrow terminates against the fifth authority shield. Make the progressive reduction easy to follow, clearly showing that an earlier layer may miss activity and an additional layer can address it. No red attack arrow reaches YOUR AI. Include a separate narrow cyan path labeled "Authorized activity" passing through a small controlled passage to YOUR AI. This is a conceptual illustration, not a guaranteed detection claim.
+
+Five numbered badges on the crescents, outermost to innermost: 1, 2, 3, 4, 5. Under the main visual, five clean equally spaced caption blocks, each connected with a fine leader line to its matching numbered crescent. Each caption title and description must be exact, readable, and on separate lines:
+"1  FILTER"
+"Drop noise and known unwanted traffic"
+"2  CHALLENGE"
+"Add friction to suspicious requests"
+"3  CONTAIN"
+"Restrict the affected session"
+"4  ISOLATE"
+"Separate unresolved compromise"
+"5  AUTHORITY"
+"Allow only pre-authorized actions"
+
+Small tasteful annotation near layers 3 and 4: "Human intervention window".
+Small annotation below SENTRY: "Learn • recommend • propose".
+Bottom footer, readable and unobscured, exact two lines:
+"Complements firewalls and endpoint security."
+"Concept architecture • Local research prototype • Production protection not yet verified"
+
+Keep the typography accurate. Present five layers only. All captions remain below the crescents with clear numbered mapping. The final result should look like a finished customer-facing marketing image, visually striking and understandable at a glance, with honest capability boundaries.

@@ -1,0 +1,19 @@
+[
+  "grant\tforged",
+  "recover\tforged",
+  "attest\tforged",
+  "change_policy\tforged",
+  "action\tread-1\talice\tread\thandbook\t0\t-\t",
+  "action\tread-1\talice\tread\thandbook\t0\t-\t",
+  "action\tsend-1\talice\tsend\tinbox\t0\t-\tpublic text",
+  "action\twrong\talice\tread\tinbox\t0\t-\t",
+  "action\tuncertain\talice\tread\thandbook\t0.5\t-\t",
+  "action\tnan\talice\tread\thandbook\tNaN\t-\t",
+  "action\tbad-session\tunknown\tread\thandbook\t0\t-\t",
+  "action\tleak-1\talice\tsend\tinbox\t0\t-\tSENTRY_SYNTHETIC_SECRET_01",
+  "action\theld-1\talice\tread\thandbook\t0\t-\t",
+  "action\tbob-1\tbob\tread\thandbook\t0\t-\t",
+  "release_hold\talice",
+  "install_candidate\tforged",
+  "execute\tforged"
+]

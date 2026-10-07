@@ -1,0 +1,21 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SENTRY local AI boundary boot policy",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["version","leaseMs","interventionMs","maxRecords","maxMemory","maxPermits","sessions","sources","actions","baseline","temporary","tripwires"],
+  "properties":{
+    "version":{"const":1},
+    "leaseMs":{"$ref":"#/$defs/bound"},"interventionMs":{"$ref":"#/$defs/bound"},
+    "maxRecords":{"$ref":"#/$defs/bound"},"maxMemory":{"$ref":"#/$defs/bound"},"maxPermits":{"$ref":"#/$defs/bound"},
+    "sessions":{"allOf":[{"$ref":"#/$defs/list"},{"minItems":1}]},"sources":{"$ref":"#/$defs/list"},"tripwires":{"$ref":"#/$defs/list"},
+    "baseline":{"$ref":"#/$defs/powers"},"temporary":{"$ref":"#/$defs/powers"},
+    "actions":{"type":"object","additionalProperties":false,"required":["read","write","send"],"properties":{"read":{"$ref":"#/$defs/list"},"write":{"$ref":"#/$defs/list"},"send":{"$ref":"#/$defs/list"}}}
+  },
+  "$defs":{
+    "bound":{"type":"integer","minimum":1,"maximum":60000},
+    "list":{"type":"array","maxItems":64,"uniqueItems":true,"items":{"type":"string","minLength":1,"maxLength":128}},
+    "powers":{"type":"array","maxItems":3,"uniqueItems":true,"items":{"enum":["read","write","send"]}}
+  },
+  "$comment":"Runtime additionally enforces interventionMs < leaseMs. Policy is immutable after boot; keys and authority issuance are outside this schema."
+}

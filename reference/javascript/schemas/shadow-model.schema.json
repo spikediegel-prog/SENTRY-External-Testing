@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Frozen advisory poisoning model payload",
+  "type":"object","additionalProperties":false,
+  "required":["version","purpose","status","featureNames","weights","bias","threshold","trainingDigest"],
+  "properties":{
+    "version":{"const":1},
+    "purpose":{"const":"poisoning_risk_advisory"},
+    "status":{"const":"shadow_candidate"},
+    "featureNames":{"const":["duplicateRate","sourceConcentration","labelMismatchRate","distributionShift","instructionPressure","triggerConcentration","unverifiedLabelRate","missingProvenanceRate"]},
+    "weights":{"type":"array","minItems":8,"maxItems":8,"items":{"type":"number","minimum":-20,"maximum":20}},
+    "bias":{"type":"number","minimum":-20,"maximum":20},
+    "threshold":{"type":"number","minimum":0,"maximum":1},
+    "trainingDigest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  },
+  "$comment":"This is a signed shadow-candidate payload, not deployment authorization. Signature and independent public-key checks occur in the trusted launcher."
+}
